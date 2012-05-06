@@ -1,0 +1,63 @@
+<script type="text/javascript">
+
+function keyCheck(e)
+{
+   var keyID = (window.event) ? event.keyCode : e.keyCode;
+
+   document.getElementById('output').innerHTML = keyID;
+
+   switch(keyID)
+
+   {
+      case 13: //ENTER
+		if (document.getElementById('password').hasFocus)
+		{
+			submitForm();
+		}
+		break;
+   }
+}
+
+function submitForm()
+{
+	document.forms.myForm.submit();
+}
+
+document.onkeydown = keyCheck;
+</script>
+<%= form_tag("/calculate/display", :id => "myForm") do %>
+  <%= label_tag(:number1, "Number one")%>
+  <%= text_field_tag(:number1)%>
+  <%= label_tag(:number2, "Number two")%>
+  <%= text_field_tag(:number2)%>
+  <%= label_tag(:password, "Password")%>
+  <%= password_field_tag(:password)%>
+  <a href="javascript: document.forms.myForm.submit();">Submit</a>
+  <%= submit_tag("", :style => "margin-left: 6000px; opacity: 0;") %>
+<% end %>
+<script type='text/javascript' >
+/* (c)2006 Stephen Chalmers
+ * 
+ * Appends a 'hasFocus' flag to all text/textarea form
+ * elements.
+ *
+ 
+Insert this script anywhere below the last form in the document.
+
+To read the current focus state of a specified element, use:
+
+if( document.forms.myForm.myElement.hasFocus )
+ ...
+
+***/
+
+for(var i=0, df=document.forms, len=df.length; i<len; i++)
+ for(j=0, els=df[i].elements; j<els.length; j++)
+  if( /^text/.test( els[j].type ) )
+  {
+   els[j].hasFocus=false;
+   els[j].onfocus=function(){this.hasFocus=true;};
+   els[j].onblur =function(){this.hasFocus=false;};
+  }
+
+</script>

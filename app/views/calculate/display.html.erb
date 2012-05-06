@@ -1,0 +1,8 @@
+<%= params[:number1].to_i + params[:number2].to_i%>
+<br>
+<% Number.all.each do |num| %>
+<%= num.num1.to_s + " + " + num.num2.to_s + " = " + (num.num1 + num.num2).to_s %>
+<br>
+<% end %>
+<br>
+<%= link_to "enter", "enter" %>
